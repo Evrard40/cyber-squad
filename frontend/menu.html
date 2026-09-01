@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Chez.BizTissu</title>
+    <style>
+         *{ box-sizing: border-box; padding: 0%; margin: 0%; }  /*Pour supprimer certains espaces unitul*/
+
+
+        .logo{ font-family: Arial, Helvetica, sans-serif;
+             font-weight: bold; font-size: 22px; font-style: oblique; }  /* J'ai créé une classe logo et dans laquelle j'ai
+        créé une classe normer classe qui contient un span dans laquelle on trouve notre logo(B) 
+        et aussi une table dans laquelle j'ai crée une class normer seba qui contient le 
+        nom de notre boutique . Donc c'est à eux j'ai appliqué le font-family qui va me permettre de choisir une police comme on le faire dans world. une font-weight qui va 
+        definir le caractere(gras ou autre) de notre police. Font-size qui definir l'epaisseur de
+         notre police et font-style qui va definir s'il va rester italique ou oblique ou autre .*/
+
+
+        nav,ul,li,a{ display: flex; gap: 20px; text-align: center;
+             text-decoration: none; text-transform: uppercase; height: auto;
+             } 
+        a:hover{ background-color: #444;
+            transition: transform 1s, background-color 2s; 
+            transform: translateY(-8px) ;
+            animation: mouvement 1s infinite;
+           
+            
+        }
+        a{ text-align: center; background-color: aliceblue; padding: 15px; border-radius: 15px; color: black; font-style: oblique; } 
+        /* concernant tout ce qui  se trouvent dans le nav, j'ai utilisé displays flex pour aligné ça,gap pour donner des espaces entre plusieurs block de nav
+        text-align pour centrer les nav, text-decoration none pour enlever les soulignements qui se trouvent au niveaux des liens,text-transform uppercase pour mettre les liens en majuscule
+        height permet de donner la hauteur, padding pour donner d'espaces à l'interieux de chaque "a"  border-radius donner de forme arrondir pour chaque case de lien; color pour defini 
+        la couleur de notre ecriture et enfin background-color pou defini le font de couleur de notre case de lien. */
+
+        .classe{ font-style: italic; font-size: 35px; color: rgb(6, 241, 37); background-color: rgb(121, 110, 110); padding: 5px 12px; margin-top: 25px; border: 2px solid #00d4ff; border-radius: 25px; border-color: rgb(10, 236, 183); } 
+        .seba{ color: rgb(6, 24, 37); } /* sont touts appliquer à notre format de logo*/
+
+
+        header{ background: khaki; padding: 15px 5%; display: flex;
+             justify-content: space-between; align-items: center;
+              box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky;
+               top: 0; z-index: 999; } /*backgound pour appliquer une font à notre header  justify-content pour donner
+                d'espace entre tout ce qui se trouve dans nav ; j'ai utilisé position sticky pour fixer l'entète tu peux aussi utiliser
+                 position fixer à la place de sticky; un box-shadow pour l'ombre de la boitre; z-index pour definir que lui doit passer 
+                 d'abord avant eux touts ; un top pour dit que c'est la position verticale*/
+
+
+        img{ width: 300px; height: 200px; object-fit: cover; border-radius: 10px; } /*widht pour reduit le picelle de l'image; hieght 
+        por definir la hauteur ; object-fit cover pour definir l'image par defaut et il doit remplir tout la case */
+
+        .robot{ display: grid; grid-template-columns: repeat(3 ,1fr); gap: 20px; padding: 20px; } /*display grid pour former des tableau de carte
+        ; grid-template-columns: repeat pour dit que je veux faire trois colonne avec les cartes que je veux créer suivi de padding et gap*/
+
+        .carte{ border: 1px solid #3f4243; border-radius: 10px; padding: 12px; text-align: center; background: whitesmoke; } /*boder solid pour defini le cadrage de notre carte 
+        ; j'ai déja expliqué les autres propriétés*/
+
+
+        .carte:hover{ 
+            transition: transform 1s, background-color 2s; 
+            transform: translateY(-8px) ;
+            animation: mouvement 1s infinite;
+           
+            
+        } 
+
+        .bnt_ajouter{ background: chocolate; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; margin-top: 5px; }
+        .robo{ background-color: beige; } 
+        h1{ color: black; font-style: oblique; text-align: center; padding-top: 20px;  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;} 
+        h2{ color: chartreuse; font-style: oblique; font-weight: 200; } 
+        
+        
+
+        footer{
+    background: #222; /* Fond noir */
+    color: white;
+    margin-top: 40px; /* Espace avec le contenu au dessus */
+    padding-top: 30px;
+}
+
+.footer-contenu{
+    display: grid; /* On utilise grid pour 3 colonnes */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 0 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-colonne h3{
+    color: khaki; /* Titre en khaki comme le header */
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.footer-colonne p, .footer-colonne a{
+    color: #ccc;
+    line-height: 1.8;
+    text-decoration: none;
+}
+
+.footer-colonne a:hover{
+    color: #00d4ff; /* Bleu au survol */
+}
+
+.reseaux{
+    display: flex;
+    gap: 15px;
+}
+
+.footer-bas{
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+    border-top: 1px solid #444; /* Petite ligne de séparation */
+    background: #111;
+    font-size: 14px;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <span class="classe">B</span><br>
+            <table><tr><th class="seba">Chez.BizTissu</th></tr></table>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="acceuill_tissu.html">Acceuil</a></li>
+                <li><a href="Apropos.html">A propos</a></li>
+                <li><a href="menu.html">Menu</a> </li>
+                <li><a href="commande.html">Commande (<span id="nb-article-menu">0</span>)</a></li>
+            </ul>
+        </nav>
+    </header>
+    <aside>
+        <div class="robo">
+            
+            <!-- TOUTES TES SECTIONS SONT GARDÉES AVEC TOUTES TES IMAGES -->
+            <div class="wax">
+                <h1>Les wax.</h1>
+                <div class="robot">
+                         <div class="carte">
+                            <img src="image/52e73424ef439953d616ea9da1b0bc0d.jpg" alt="">
+                            <p>CHIGANVY  Wax</p>
+                            <P>3000 FCFA (3m)</P>
+                            <button class="bnt_ajouter" data-nom="CHIGANVY Wax" data-prix="3000">Ajouter</button>
+                        </div>
+
+
+                         <div class="carte">
+                            <img src="image/81HLgYwWSLL._AC_UF1000,1000_QL80_.jpg" alt="">
+                            <p>GUARANTEED  Wax</p>
+                            <P>3250 FCFA (3m)</P>
+                            <button class="bnt_ajouter" data-nom="GUARANTEED Wax" data-prix="3250">Ajouter</button>
+                        </div>
+
+
+                         <div class="carte">
+                            <img src="image/2023-08-28-14-27-52 (1).jpg" alt="">
+                            <p>SUPER  Wax</p>
+                            <P>3500 FCFA (3m)</P>
+                            <button class="bnt_ajouter" data-nom="SUPER Wax" data-prix="3500">Ajouter</button>
+                        </div>
+
+                         <div class="carte">
+                            <img src="image/Screenshot_20260830-173748.jpg" alt="">
+                            <p>SUPER HILENVIPTEX  Wax</p>
+                            <P>4000 FCFA (3m)</P>
+                            <button class="bnt_ajouter" data-nom="SUPER HILENVIPTEX Wax" data-prix="4000">Ajouter</button>
+                        </div>
+
+
+                         <div class="carte">
+                            <img src="image/pagne-wax-d-afrique-chiganvy-tissu-imprime-100-coton-et-resistant-6-yards.jpg" alt="">
+                            <p>CHIGAN Africa  Wax</p>
+                            <P>3500 FCFA (3m)</P>
+                            <button class="bnt_ajouter" data-nom="CHIGAN Africa Wax" data-prix="3500">Ajouter</button>
+                        </div>
+
+
+                         <div class="carte">
+                            <img src="image/African-100-Polyester-Single-Sided-Double-Sided-Pagne-African-Wax-Print-Fabric.webp" alt="">
+                            <p>GUiwa  Wax</p>
+                            <P>3250 FCFA (3m)</P>
+                            <button class="bnt_ajouter" data-nom="GUiwa Wax" data-prix="3250">Ajouter</button>
+                        </div>
+                </div>
+            </div>
+
+
+
+            <div class="african">
+                <h1>Les pagnes.</h1>
+                <div class="robot">
+                    <div class="carte">
+                        <img src="image/He4080fad5c9e4c7da4836baefde2ccb1K.jpg" alt="">
+                        <p>GUya</p>
+                        <P>3000 FCFA (3m)</P>
+                        <button class="bnt_ajouter" data-nom="GUiya Wax" data-prix="3000">Ajouter</button>
+                    </div>
+
+
+
+                    <div class="carte">
+                        <img src="image/hollantex-456a-multicolore-coton-6-yards.jpg" alt="">
+                        <p>Hollendax</p>
+                        <P>3250 FCFA (3m)</P>
+                        <button class="bnt_ajouter" data-nom="Hollendax" data-prix="3250">Ajouter</button>
+                    </div>
+
+                    <div class="carte">
+                        <img src="image/wax-pagne-africain-6-yards-100-coton-rose-bleu-4500503.jpg" alt="">
+                        <p>HILENVIPTEX</p>
+                        <P>3000 FCFA (3m)</P>
+                        <button class="bnt_ajouter" data-nom="HILENVIPTEX" data-prix="3000">Ajouter</button>
+                    </div>
+
+
+                    <div class="carte">
+                        <img src="image/PO-5016-Gold-Brown-Solar-Discs_300x300.jpg" alt="">
+                        <p>FAYIVI</p>
+                        <P>3500 FCFA (3m)</P>
+                        <button class="bnt_ajouter" data-nom="FAYIVI" data-prix="3500">Ajouter</button>
+                    </div>
+
+
+                    <div class="carte">
+                        <img src="image/Photo24-05-2026173942_d303dec0-4b52-4573-b4c4-2c9f3c7cb557 (1).jpg" alt="">
+                        <p>SUGTAX</p>
+                        <P>1500 FCFA (3m)</P>
+                        <button class="bnt_ajouter" data-nom="SUGTAX" data-prix="1500">Ajouter</button>
+                    </div>
+
+                    <div class="carte">
+                        <img src="image/IMG_0009.jpg" alt="">
+                        <p>SUGTAX</p>
+                        <P>4000 FCFA (3m)</P>
+                        <button class="bnt_ajouter" data-nom="SUGTAX" data-prix="4000">Ajouter</button>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="basin">
+                <h1>Les basins.</h1>
+                <div class="robot">
+                             <div class="carte">
+                                <img src="image/H10b577c5dcd64d96b804a1adec875fdcm.jpg" alt="">
+                                <p>Fripex basin</p>
+                                <P>8000 FCFA (5 yars)</P>
+                                <button class="bnt_ajouter" data-nom="Fripex basin" data-prix="8000">Ajouter</button>
+                            </div>
+
+
+                             <div class="carte">
+                                <img src="image/WhatsApp Image 2026-08-31 at 11.02.25.jpeg" alt="">
+                                <p>Frol basin</p>
+                                <P>10000 FCFA (5 yars)</P>
+                                <button class="bnt_ajouter" data-nom="Frol basin" data-prix="10000">Ajouter</button>
+                            </div>
+
+
+                             <div class="carte">
+                                <img src="image/WhatsApp Image 2026-08-31 at 11.02.29 (1).jpeg" alt="">
+                                <p>Vritex basin</p>
+                                <P>12000 FCFA (5 yars)</P>
+                                <button class="bnt_ajouter" data-nom="Vritex basin" data-prix="12000">Ajouter</button>
+                            </div>
+
+
+                             <div class="carte">
+                                <img src="image/WhatsApp Image 2026-08-31 at 11.02.29.jpeg" alt="">
+                                <p>Hiltpex basin</p>
+                                <P>9000 FCFA (5 yars)</P>
+                                <button class="bnt_ajouter" data-nom="Hiltpex basin" data-prix="9000">Ajouter</button>
+                            </div>
+
+                             <div class="carte">
+                                <img src="image/WhatsApp Image 2026-08-31 at 11.02.30 (1).jpeg" alt="">
+                                <p>Givaxpex basin</p>
+                                <P>8500 FCFA (5 yars)</P>
+                                <button class="bnt_ajouter" data-nom="Givaxpex basin" data-prix="8500">Ajouter</button>
+                            </div>
+
+
+                             <div class="carte">
+                                <img src="image/WhatsApp Image 2026-08-31 at 11.02.30 (2).jpeg" alt="">
+                                <p>Piltalhiepex basin</p>
+                                <P>10000 FCFA (5 yars)</P>
+                                <button class="bnt_ajouter" data-nom="Piltahiepex basin" data-prix="10000">Ajouter</button>
+                            </div>     
+                </div>       
+            </div>
+
+            <div class="Tissu">
+                <h1>Les Tissus viscos.</h1>
+                <div class="robot">
+                    <div class="carte">
+                        <img src="image/WhatsApp Image 2026-08-31 at 14.01.44 (1).jpeg" alt="">
+                        <p>Texhla Tissu</p>
+                        <p>12000 FCFA (3 roulo)</p>
+                        <button class="bnt_ajouter" data-nom="Texhla Tissu" data-prix="12000">Ajouter</button>
+                    </div>
+
+
+                    <div class="carte">
+                        <img src="image/Le second tissu.webp" alt="">
+                        <p>Fropper Tissu</p>
+                        <p>12000 FCFA (3 roulo)</p>
+                        <button class="bnt_ajouter" data-nom="Fropper Tissu" data-prix="12000">Ajouter</button>
+                    </div>
+
+
+                    <div class="carte">
+                        <img src="image/WhatsApp Image 2026-08-31 at 14.01.44 (2).jpeg" alt="">
+                        <p>Tissu Coton</p>
+                        <p>12000 FCFA (3m)</p>
+                        <button class="bnt_ajouter" data-nom="Tissu Coton" data-prix="12000">Ajouter</button>
+                    </div>
+
+
+                    <div class="carte">
+                        <img src="image/WhatsApp Image 2026-08-31 at 14.01.45.jpeg" alt="">
+                        <p>ColHieder Tissu</p>
+                        <p>9000 FCFA (3m)</p>
+                        <button class="bnt_ajouter" data-nom="ColHieder Tissu" data-prix="9000">Ajouter</button>
+                    </div>
+
+
+                    <div class="carte">
+                        <img src="image/WhatsApp Image 2026-08-31 at 14.01.44 (3).jpeg" alt="">
+                        <p>Catha Tissu</p>
+                        <p>10000 FCFA (3m)</p>
+                        <button class="bnt_ajouter" data-nom="Catha Tissu" data-prix="10000">Ajouter</button>
+                    </div>
+
+                    <div class="carte">
+                        <img src="image/WhatsApp Image 2026-08-31 at 14.01.43.jpeg" alt="">
+                        <p>Kappa Tissu</p>
+                        <p>7000 FCFA (3 roulo)</p>
+                        <button class="bnt_ajouter" data-nom="Kappa Tissu" data-prix="7000">Ajouter</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="africain">
+                <h1>Les Tissus Africa.</h1>
+                <div class="robot">
+                    <div class="carte">
+                        <img src="image/WhatsApp Image 2026-08-31 at 14.01.46.jpeg" alt="">
+                        <p>africachou</p>
+                        <p>12000 FCFA (3m)</p>
+                        <button class="bnt_ajouter" data-nom="africachou" data-prix="12000">Ajouter</button>
+                    </div>
+
+
+                    <div class="carte">
+                        <img src="image/WhatsApp Image 2026-08-31 at 14.01.46 (3).jpeg" alt="">
+                        <p>afripaca</p>
+                        <p>14000 FCFA (3m)</p>
+                        <button class="bnt_ajouter" data-nom="afripaca" data-prix="14000">Ajouter</button>
+                    </div>
+
+
+                    <div class="carte">
+                        <img src="image/WhatsApp Image 2026-08-31 at 14.01.46 (2).jpeg" alt="">
+                        <p>afroaca</p>
+                        <p>14000 FCFA (3m)</p>
+                        <button class="bnt_ajouter" data-nom="afroaca" data-prix="14000">Ajouter</button>
+                    </div>
+
+
+                    <div class="carte">
+                        <img src="image/WhatsApp Image 2026-08-31 at 14.01.46 (1).jpeg" alt="">
+                        <p>acirafa</p>
+                        <p>14000 FCFA (3m)</p>
+                        <button class="bnt_ajouter" data-nom="acirafa" data-prix="14000">Ajouter</button>
+                    </div>
+
+
+                    <div class="carte">
+                        <img src="image/WhatsApp Image 2026-08-31 at 14.01.45 (4).jpeg" alt="">
+                        <p>ablofa</p>
+                        <p>14000 FCFA (3m)</p>
+                        <button class="bnt_ajouter" data-nom="ablofa" data-prix="14000">Ajouter</button>
+                    </div>
+
+
+                    <div class="carte">
+                        <img src="image/WhatsApp Image 2026-08-31 at 14.01.45 (3).jpeg" alt="">
+                        <p>Sicacochica</p>
+                        <p>14000 FCFA (3m)</p>
+                        <button class="bnt_ajouter" data-nom="Sicacochica" data-prix="14000">Ajouter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+
+
+    <footer>
+    <div class="footer-contenu">
+        <div class="footer-colonne">
+            <h3>Chez.BizTissu</h3>
+            <p>Votre spécialiste en Wax, Basin et tissus de qualité au Bénin.</p>
+        </div>
+
+        <div class="footer-colonne">
+            <h3>Contact</h3>
+            <p>📍 BENIN / Natitingou, Ourbouga</p>
+            <p>📞 01 97XXXXXXX</p>
+            <p>✉️ chezbiztissu@gmail.com</p>
+        </div>
+
+        <div class="footer-colonne">
+            <h3>Suivez-nous</h3>
+            <div class="reseaux">
+                <a href="#">WhatsApp</a>
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bas">
+        <p>© 2026 Chez.BizTissu. Tous droits réservés.</p>
+    </div>
+</footer>
+
+<script>
+    let panier = JSON.parse(localStorage.getItem('panier')) || []
+    const boutonsAjouter = document.querySelectorAll('.bnt_ajouter')
+    const nbArticleMenu = document.querySelector('#nb-article-menu')
+
+    function majNombrePanier(){
+        let totalQte = panier.reduce((sum, item) => sum + item.quantite, 0)
+        nbArticleMenu.textContent = totalQte
+    }
+    majNombrePanier()
+
+    boutonsAjouter.forEach(bouton => {
+        bouton.addEventListener('click', () => {
+            const nom = bouton.getAttribute('data-nom')
+            const prix = parseInt(bouton.getAttribute('data-prix'))
+            ajouterAuPanier(nom, prix)
+        })
+    })
+
+    function ajouterAuPanier(nom, prix) {
+        let quantite = prompt(`Combien de "${nom}" voulez-vous ?`, "1")
+        if(quantite === null || quantite <= 0){ return }
+        quantite = parseInt(quantite)
+        const articleExistant = panier.find(item => item.nom === nom)
+        if(articleExistant){ articleExistant.quantite += quantite } 
+        else { panier.push({ nom: nom, prix: prix, quantite: quantite }) }
+        localStorage.setItem('panier', JSON.stringify(panier))
+        majNombrePanier()
+        alert(`${nom} x${quantite} ajouté !`)
+    }
+</script>
+</body>
+</html>

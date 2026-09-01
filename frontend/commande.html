@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commande - Chez.BizTissu</title>
+    <style>
+        *{ box-sizing: border-box; margin: 0; padding: 0; }
+
+
+        body{ background: whitesmoke; font-family: Arial; }
+
+        nav,ul,li,a{
+            text-transform: uppercase;
+            text-decoration: none;
+            font-style: oblique;
+            list-style: none;
+        }
+
+
+        header{ background: khaki; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; }
+
+
+        .zone-panier{ background: white; margin: 20px; padding: 20px; border-radius: 15px; border: 1px solid black; }
+
+
+        #liste-panier div{ display: flex; justify-content: space-between; margin: 10px 0; border-bottom: 1px dashed #ccc; padding: 8px; }
+
+
+        .btn-commander{ background: #00d4ff; color: white; border: none; padding: 15px; width: 100%; border-radius: 10px; font-size: 18px; cursor: pointer; margin-top: 15px; }
+
+
+        .btn-supprimer{ background: red; color: white; border: none; padding: 3px 10px; border-radius: 5px; cursor: pointer; margin-left: 10px; }
+
+
+        h1, h2{ text-align: center; color: chartreuse; margin: 10px 0; }
+
+        .logo{ font-family: Arial, Helvetica, sans-serif; font-weight: bold; font-size: 22px; font-style: oblique; } 
+
+        .classe{ font-style: italic; font-size: 35px; color: rgb(6, 241, 37);
+             background-color: rgb(121, 110, 110); padding: 5px 12px; margin-top: 25px;
+              border: 2px solid #00d4ff; border-radius: 25px; border-color: rgb(10, 236, 183); } 
+
+        .seba{ color: black; } 
+
+
+        /* POPUP FORMULAIRE */
+        .hidden{ display: none !important; }
+        #popup-form{
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7); display: flex; justify-content: center; align-items: center; z-index: 1000;
+        }
+        .form-contenu{
+            background: white; padding: 30px; border-radius: 15px; width: 90%; max-width: 500px; position: relative; max-height: 90vh; overflow-y: auto;
+        }
+        .form-contenu h2{ color: #00d4ff; }
+        .form-contenu label{ display: block; margin-top: 15px; font-weight: bold; color: black; }
+        .form-contenu input, .form-contenu select{
+            width: 100%; padding: 10px; margin-top: 5px; border: 2px solid #00d4ff; border-radius: 8px;
+        }
+        #fermer-form{ position: absolute; top: 10px; right: 15px; font-size: 30px; cursor: pointer; color: red; font-weight: bold; }
+        .btn-envoyer{ background: #e67e22; color: white; border: none; padding: 12px; width: 100%; border-radius: 10px; margin-top: 20px; cursor: pointer; font-size: 16px; }
+        .btn-modifier{ background: #7f8c8d; color: white; border: none; padding: 12px; width: 100%; border-radius: 10px; margin-top: 10px; cursor: pointer; font-size: 16px; }
+
+
+        footer{
+    background: #222; /* Fond noir */
+    color: white;
+    margin-top: 40px; /* Espace avec le contenu au dessus */
+    padding-top: 30px;
+}
+
+.footer-contenu{
+    display: grid; /* On utilise grid pour 3 colonnes */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 0 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-colonne h3{
+    color: khaki; /* Titre en khaki comme le header */
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.footer-colonne p, .footer-colonne a{
+    color: #ccc;
+    line-height: 1.8;
+    text-decoration: none;
+}
+
+.footer-colonne a:hover{
+    color: #00d4ff; /* Bleu au survol */
+}
+
+.reseaux{
+    display: flex;
+    gap: 15px;
+}
+
+.footer-bas{
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+    border-top: 1px solid #444; /* Petite ligne de séparation */
+    background: #111;
+    font-size: 14px;
+}
+    </style>
+</head>
+<body>
+     <header>
+        <div class="logo">
+            <span class="classe">B</span><br>
+            <table><tr><th class="seba">Chez.BizTissu</th></tr></table>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="acceuill_tissu.html">Acceuille</a></li>
+                <li><a href="Apropos.html">A propos</a></li>
+                <li><a href="menu.html">Menu</a> </li>
+                <li><a href="commande.html">Panier (<span id="nb-article-menu">0</span>)</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="zone-panier">
+        <h2>Panier (<span id="nb-article">0</span> article)</h2>
+        <div id="liste-panier"><p>Panier vide</p></div>
+        <h2>Total: <span id="total">0</span> FCFA</h2>
+        <button class="btn-commander" onclick="ouvrirFormulaire()">Valider la commande</button>
+    </div>
+
+    <!-- POPUP FORMULAIRE -->
+    <div id="popup-form" class="hidden" onclick="fermerSiFond(event)">
+        <div class="form-contenu" onclick="event.stopPropagation()">
+            <span id="fermer-form" onclick="fermerFormulaire()">&times;</span>
+            <h2>Finaliser votre commande</h2>
+            <form id="form-commande" onsubmit="envoyerCommande(event)">
+                <label>Nom et Prénom *</label>
+                <input type="text" id="nom" required>
+
+                <label>Adresse Gmail</label>
+                <input type="email" id="email" placeholder="exemple@gmail.com">
+
+                <label>Comment voulez-vous recevoir ? *</label>
+                <select id="recuperation" required>
+                    <option value="">-- Choisir --</option>
+                    <option value="Livraison à domicile">Livraison</option>
+                    <option value="Retrait à la boutique">Je viens à la boutique</option>
+                </select>
+
+                <label>Lieu de domicile / Adresse *</label>
+                <input type="text" id="adresse" required placeholder="Ex: Abomey-Calavi, Godomey, près du marché">
+
+                <label>Numéro Téléphone / WhatsApp *</label>
+                <input type="tel" id="telephone" required placeholder="Ex: 01 61 23 45 67">
+
+                <button type="submit" class="btn-envoyer">Envoyer la commande</button>
+                <button type="button" class="btn-modifier" onclick="fermerFormulaire()">Modifier la commande</button>
+            </form>
+        </div>
+    </div>
+
+
+
+    <footer>
+    <div class="footer-contenu">
+        <div class="footer-colonne">
+            <h3>Chez.BizTissu</h3>
+            <p>Votre spécialiste en Wax, Basin et tissus de qualité au Bénin.</p>
+        </div>
+
+        <div class="footer-colonne">
+            <h3>Contact</h3>
+            <p>📍 BENIN / Natitingou, Ourbouga</p>
+            <p>📞 01 97XXXXXXX</p>
+            <p>✉️ chezbiztissu@gmail.com</p>
+        </div>
+
+        <div class="footer-colonne">
+            <h3>Suivez-nous</h3>
+            <div class="reseaux">
+                <a href="#">WhatsApp</a>
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bas">
+        <p>© 2026 Chez.BizTissu. Tous droits réservés.</p>
+    </div>
+</footer>
+
+<script>
+    let panier = JSON.parse(localStorage.getItem('panier')) || []
+    const listePanier = document.querySelector('#liste-panier')
+    const nbArticle = document.querySelector('#nb-article')
+    const totalE = document.querySelector('#total')
+    const popupForm = document.querySelector('#popup-form')
+
+    function mettreAJourPanier() {
+        listePanier.innerHTML = ''; 
+        let totale = 0; 
+        let nbTotalArticle = 0;
+        if(panier.length === 0){ listePanier.innerHTML = '<p>Panier vide</p>' }
+        panier.forEach((item, index) => {
+            const itemTotal = item.prix * item.quantite
+            totale += itemTotal; 
+            nbTotalArticle += item.quantite
+            const div = document.createElement('div')
+            div.innerHTML = `<span>${item.nom} x ${item.quantite}</span><span>${itemTotal.toLocaleString()} FCFA <button class="btn-supprimer" onclick="supprimer(${index})">X</button></span>`
+            listePanier.appendChild(div)
+        })
+        nbArticle.textContent = nbTotalArticle
+        totalE.textContent = totale.toLocaleString()
+        localStorage.setItem('panier', JSON.stringify(panier))
+    }
+
+    function supprimer(index){ 
+        panier.splice(index, 1); 
+        mettreAJourPanier() 
+    }
+
+    function ouvrirFormulaire(){
+        if(panier.length === 0){
+            alert("Votre panier est vide")
+            return
+        }
+        popupForm.classList.remove('hidden')
+    }
+
+    function fermerFormulaire(){
+        popupForm.classList.add('hidden')
+    }
+
+    function fermerSiFond(event){
+        if(event.target.id === 'popup-form'){
+            fermerFormulaire()
+        }
+    }
+
+    function envoyerCommande(e){
+        e.preventDefault() 
+
+        const nom = document.querySelector('#nom').value
+        const email = document.querySelector('#email').value
+        const recup = document.querySelector('#recuperation').value
+        const adresse = document.querySelector('#adresse').value
+        const tel = document.querySelector('#telephone').value
+
+        let message = `*NOUVELLE COMMANDE - Chez.BizTissu* %0A%0A`
+        message += `*Nom:* ${nom} %0A`
+        message += `*Email:* ${email} %0A`
+        message += `*Telephone:* ${tel} %0A`
+        message += `*Recuperation:* ${recup} %0A`
+        message += `*Adresse:* ${adresse} %0A%0A`
+        message += `*DETAILS COMMANDE:*%0A`
+
+        let total = 0
+        panier.forEach(item => {
+            let itemTotal = item.prix * item.quantite
+            total += itemTotal
+            message += `- ${item.nom} x ${item.quantite} = ${itemTotal.toLocaleString()} FCFA%0A`
+        })
+        message += `%0A*TOTAL:* ${total.toLocaleString()} FCFA`
+
+        // ENVOYER SUR WHATSAPP
+        let numero = "22945784874" // <-- METS TON VRAI NUMERO ICI SANS +
+        window.open(`https://wa.me/${numero}?text=${message}`, '_blank')
+
+        // MESSAGE DE CONFIRMATION
+        alert(`Bonjour ${nom}, votre commande a été effectuée avec succès dans la boutique de chez Biz.Tissu`)
+
+        // VIDER LE PANIER + FERMER LE FORMULAIRE
+        panier = []
+        localStorage.setItem('panier', JSON.stringify(panier))
+        mettreAJourPanier()
+        fermerFormulaire()
+        document.querySelector('#form-commande').reset()
+    }
+
+    mettreAJourPanier()
+</script>
+</body>
+</html>
