@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+
+    <style>
+        *{
+            box-sizing: border-box;
+            padding: 0%;
+            margin: 0%;
+        }  /* Pour supprimer les espaces unitules qui se trouvent dans la bordur du header*/
+        .logo{
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            font-size: 22px;
+            font-style: oblique;
+        } /* Pour  gerer comment notre logo C doit etre*/ 
+
+        nav,ul,li,a{
+            display: flex;
+            gap: 200px;
+            text-align: center;
+            text-decoration: none;
+            text-transform: uppercase;
+            height: auto;
+            
+        } /* Pour aligne les nav avec la fonnctionnalité display flex et aussi pour elenver les points et les soulignements*/
+        a{
+            text-align: center;
+            background-color: aliceblue;
+            padding: 15px;
+            border-radius: 15px;
+        } /* Pour stuturer les liens et aussi definir comment ils doivent etre sur notre page */
+
+        .classe{
+            font-style: italic;
+            font-size: 35px;
+            color: rgb(6, 241, 37);
+            background-color: rgb(121, 110, 110);
+            padding: auto;
+            max-width: 25px;
+            margin-top: 25px;
+            border: 2px solid #00d4ff;
+            border-radius: 25px;
+            border-color: rgb(10, 236, 183);
+        } /*Comme on  avait definit C comme notre logo  dont à juste apppliquer certains propriter */
+        .seba{
+            color: rgb(6, 241, 37);
+        } /* Pour l'ecriture Cynthia.Tissu*/
+        header{ 
+            background: khaki;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        } /*Pour la disposition  de notre header*/
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <span class="classe">C</span><br>
+            <table>
+                <tr>
+                    <th class="seba">Cynthia.Tissu</th>
+                </tr>
+            </table>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="acceuill_tissu.html">Acceuille</a></li>
+                <li><a href="Apropos.html">A propos</a></li>
+                <li><a href="Menu_commande.html">Menu</a> </li>
+                <li><a href="">Commande</a></li>
+            </ul>
+        </nav>
+    </header>
+</body>
+</html>
