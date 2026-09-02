@@ -8,6 +8,7 @@ class Tissu(models.Model):
     prix = models.DecimalField(max_digits=10, decimal_places=2)
     quantite = models.PositiveIntegerField()
     nombre_de_metres = models.PositiveIntegerField()
+    disponibilite_tissu = models.BooleanField(default=True)
     date_achat = models.DateField()
 
     def __str__(self):
