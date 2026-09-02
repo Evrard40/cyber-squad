@@ -1,6 +1,8 @@
 from django.db import models
 
 # Create your models here.
+
+
 class Tissu(models.Model):
    # image = *models.ImageField(upload_to='image/')
     nom = models.CharField(max_length=100)
